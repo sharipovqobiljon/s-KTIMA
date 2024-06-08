@@ -1,0 +1,102 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div class="login-container">
+    <img src="{% static 'img/logo-icon-new.svg' %}" alt="Logo Icon" class="logo-icon"/>
+    <h2>Login</h2>
+    <form action="" method="post" class="login-form">
+        <div class="form-group">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</div>
+<style>
+.login-container {
+    border: 2px solid blue;
+    background: linear-gradient(
+        90.71deg,
+        #251b99 10.54%,
+        #3d2cff 25.29%,
+        #1a8ee3 43.47%,
+        #0070c1 60.28%,
+        #2a32ff 77.81%,
+        rgba(0, 10, 255, 0.72) 89.33%
+      );
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: 50px;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #00a6ff;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container form p {
+    margin: 10px 0;
+}
+
+.login-container form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #000000;
+}
+
+.login-container form input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #0051ff;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.login-container form button {
+    background-color: #008cff;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.login-container form button:hover {
+    background-color: #0b0072;
+}
+
+.login-container img {
+    height: 100px;
+    width: auto;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+
+.helptext,
+small,
+.help-block {
+    display: none;
+}
+</style>
+{% endblock content %}

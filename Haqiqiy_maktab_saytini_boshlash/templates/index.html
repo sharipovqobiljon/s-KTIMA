@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/fonts.css' %}">
+    <link rel="website icon" href="{% static 'img/photo_2024-03-30_16-04-04.jpg' %}">
+    <title>Maktab</title>
+</head>
+<body>
+    <div class="wrapper">
+        <section class="menu">
+            <header class="header">
+                <div>
+                    <img src="{% static '/img/download 12.png' %}" alt="www.piima.uz" />
+                    <img src="{% static '/img/Слой_x0020_1.png' %}" alt="www.piima.uz" />
+                </div>
+                <ul>
+                    <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+                    <li><a href="{% url 'news' %}">Ma'lumotlar</a></li>
+                    <li><a href="{% url 'connect' %}">Bog'lanish</a></li>
+                    <li><a href="{% url 'home' %}">Tadbirlar</a></li>
+                </ul>
+                {% if user.is_authenticated %}
+                <div class="btns">
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                </div>
+                {% else %}
+                <div class="btns">
+                    <a href="{% url 'login' %}">
+                        <button class="noselect blue">Log In</button>
+                    </a>
+                    <a href="{% url 'signup' %}">
+                        <button class="noselect blue">Sign Up</button>
+                    </a>
+                </div>
+                {% endif %}
+            </header>
+            
+            <div class="main">
+                {% block content %}
+                {% if user.is_authenticated %}
+                <p style="text-align: center; color:#0011ff; background: transparent; backdrop-filter: blur(10px); font-size: 20px;">Assalomu alaykum xurmatli<b> {{ user.username }} </b>sayitimizga hush kelibsiz.<p>
+                {% else %}
+                <p style="text-align: center; color:#ff0000; background: transparent; backdrop-filter: blur(10px);font-size: 20px;">Assalomu alaykum siz ro'yxatdan o'tmagansiz!!!</p>
+                {% endif %}
+                {% endblock content %}
+
+                
+
+                <div class="boxes">
+                    <div>
+                        <div>
+                            <img src="{% static '/img/email (2).png' %}" alt="" />
+                            <span>Samarqand viloyati Kattaqo’rg’on tuman Kichikming qishlog’i.</span>
+                        </div>
+                        <div>
+                            <img src="{% static '/images/location-pin.png' %}" alt="" />
+                            <span> www.piima.uz</span>
+                        </div>
+                        <div class="footer_div_1">
+                            <img src="{% static 'img/Icon awesome-phone-alt.png' %}" alt="" />
+                            <p>+998 93 432 10 14</p>
+                        </div>
+                    </div>
+
+                    <footer class="footer">
+                        <div class="all">
+                            <img src="{% static 'img/_2488930778256.png' %}" alt="" />
+                            <div>
+                                <h3>Samarqand viloyati Kattaqo’rg’on tuman ixtisoslashtirilga maktabi.Rasmiy sayt. www.piima.uz</h3>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
